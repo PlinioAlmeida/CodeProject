@@ -2,14 +2,34 @@
 
 namespace CodeProject\Http\Controllers;
 
-use CodeProject\Client;
+use CodeProject\Repositories\ClientRepository;
+use CodeProject\Services\ClientService;
 use Illuminate\Http\Request;
-
-use CodeProject\Http\Requests;
-use CodeProject\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
+    /**
+     * @var ClientRepository
+     */
+    private $repository;
+
+    /**
+     * @var ClientService
+     */
+    private $service;
+
+    /**
+     * ClientController constructor.
+     * @param ClientRepository $repository
+     * @param ClientService $service
+     */
+    public function __construct(ClientRepository $repository, ClientService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +37,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return \CodeProject\Client::all();
+        return $this->repository->all();
     }
 
     /**
@@ -38,7 +58,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return Client::create($request->all());
+        return $this->service->create($request->all());
     }
 
     /**
@@ -49,7 +69,8 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return Client::find($id);
+        return $this->repository->skipPresenter()->find($id);
+
     }
 
     /**
@@ -72,8 +93,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::findorfail($id);
-        $updateNow = $client->update($request->all());
+        return $this->service->update($request->all(), $id);
     }
 
     /**
@@ -84,6 +104,20 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        Client::find($id)->delete();
-    }
-}
+        try{
+            $this->repository->skipPresenter()->find($id)->delete();
+            return [
+                'success' => true,
+                'message' => "Cliente deletado com sucesso!"
+            ];
+        }
+        catch(QueryException $e){
+            return ['error'=>true,'message'=>'Cliente nao pode ser apagado pois existe um ou mais projetos vinculados a ele.'];
+ 	}
+ 	catch(ModelNotFoundException $e){
+ 	return ['error'=>true,'message'=>'Cliente não encontrado.'];
+ 	}
+ 	catch(\Exception $e){
+ 	return ['error'=>true,'message'=>'Ocorreu um erro ao excluir o cliente.'];
+ 	}
+ 	}}
