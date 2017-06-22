@@ -5,6 +5,7 @@ namespace CodeProject\Http\Controllers;
 use CodeProject\Repositories\ProjectRepository;
 use CodeProject\Services\ProjectService;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProjectController extends Controller
 {
@@ -69,8 +70,13 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return $this->repository->skipPresenter()->find($id);
-
+        try {
+            return $this->repository->find($id);
+        } catch (ModelNotFoundException $e) {
+            return ['error'=>true, 'Projeto não encontrado.'];
+        } catch (\Exception $e) {
+            return ['error'=>true, 'Ocorreu algum erro ao localizar o projeto.'];
+        }
     }
 
     /**
@@ -93,7 +99,13 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->service->update($request->all(), $id);
+        try {
+            return $this->service->update($request->all(), $id);
+        } catch (ModelNotFoundException $e) {
+            return ['error'=>true, 'Projeto não encontrado.'];
+        } catch (\Exception $e) {
+            return ['error'=>true, 'Ocorreu algum erro ao localizar o projeto.'];
+        }
     }
 
     /**
@@ -105,19 +117,20 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         try{
-            $this->repository->skipPresenter()->find($id)->delete();
+            $this->repository->find($id)->delete();
             return [
                 'success' => true,
-                'message' => "Projecte deletado com sucesso!"
+                'message' => "Projeto deletado com sucesso!"
             ];
-        }
-        catch(QueryException $e){
-            return ['error'=>true,'message'=>'Projecte nao pode ser apagado pois existe um ou mais projetos vinculados a ele.'];
- 	}
- 	catch(ModelNotFoundException $e){
- 	return ['error'=>true,'message'=>'Projecte não encontrado.'];
- 	}
- 	catch(\Exception $e){
- 	return ['error'=>true,'message'=>'Ocorreu um erro ao excluir o Projecte.'];
- 	}
- 	}}
+            }
+            catch(QueryException $e){
+                return ['error'=>true,'message'=>'Projeto nao pode ser apagado pois existe um ou mais projetos vinculados a ele.'];
+     	    }
+     	    catch(ModelNotFoundException $e){
+     	    return ['error'=>true,'message'=>'Projeto não encontrado.'];
+     	    }
+     	    catch(\Exception $e){
+     	    return ['error'=>true,'message'=>'Ocorreu um erro ao excluir o Projeto.'];
+     	    }
+     	}
+    }

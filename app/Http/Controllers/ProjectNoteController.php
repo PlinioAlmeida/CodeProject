@@ -5,6 +5,7 @@ namespace CodeProject\Http\Controllers;
 use CodeProject\Repositories\ProjectNoteRepository;
 use CodeProject\Services\ProjectNoteService;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProjectNoteController extends Controller
 {
@@ -69,7 +70,14 @@ class ProjectNoteController extends Controller
      */
     public function show($id, $noteId)
     {
-        return $this->repository->findWhere(['project_id'=>$id, 'id'=>$noteId]);
+        try {
+            return $this->repository->findWhere(['project_id'=>$id, 'id'=>$noteId]);
+        } catch (ModelNotFoundException $e) {
+            return ['error'=>true, 'Nota não encontrada.'];
+        } catch (\Exception $e) {
+            return ['error'=>true, 'Ocorreu algum erro ao localizar o registro.'];
+        }
+
 
     }
 
@@ -93,7 +101,14 @@ class ProjectNoteController extends Controller
      */
     public function update(Request $request, $id, $noteId)
     {
-        return $this->service->update($request->all(), $noteId);
+        try {
+            return $this->service->update($request->all(), $noteId);
+        } catch (ModelNotFoundException $e) {
+            return ['error'=>true, 'Nota não encontrada.'];
+        } catch (\Exception $e) {
+            return ['error'=>true, 'Ocorreu algum erro ao localizar a nota do projeto.'];
+        }
+
     }
 
     /**
@@ -105,19 +120,20 @@ class ProjectNoteController extends Controller
     public function destroy($id, $noteId)
     {
         try{
-            $this->repository->skipPresenter()->find($noteId)->delete();
+            $this->repository->find($noteId)->delete();
             return [
                 'success' => true,
-                'message' => "ProjectNotee deletado com sucesso!"
+                'message' => "Nota do projeto deletada com sucesso!"
             ];
-        }
-        catch(QueryException $e){
-            return ['error'=>true,'message'=>'ProjectNotee nao pode ser apagado pois existe um ou mais projetos vinculados a ele.'];
- 	}
- 	catch(ModelNotFoundException $e){
- 	return ['error'=>true,'message'=>'ProjectNotee não encontrado.'];
- 	}
- 	catch(\Exception $e){
- 	return ['error'=>true,'message'=>'Ocorreu um erro ao excluir o ProjectNotee.'];
- 	}
- 	}}
+            }
+            catch(QueryException $e){
+                return ['error'=>true,'message'=>'Nota do projeto nao pode ser apagada pois existe um ou mais projetos vinculados a ela.'];
+     	    }
+     	    catch(ModelNotFoundException $e){
+     	    return ['error'=>true,'message'=>'Nota do projeto não encontrada.'];
+     	    }
+     	    catch(\Exception $e){
+     	    return ['error'=>true,'message'=>'Ocorreu um erro ao excluir a nota do projeto.'];
+     	    }
+     	}
+    }
