@@ -38,7 +38,11 @@ class ProjectNoteController extends Controller
      */
     public function index($id)
     {
-        return $this->repository->findWhere(['project_id'=>$id]);
+        $result = $this->repository->findWhere(['project_id'=>$id]);
+        if (($result) && count($result)>=1) {
+            return $result;
+        }
+        return ['error'=>true, 'Não foram localizadas notas neste projeto.'];
     }
 
     /**
@@ -70,15 +74,11 @@ class ProjectNoteController extends Controller
      */
     public function show($id, $noteId)
     {
-        try {
-            return $this->repository->findWhere(['project_id'=>$id, 'id'=>$noteId]);
-        } catch (ModelNotFoundException $e) {
-            return ['error'=>true, 'Nota não encontrada.'];
-        } catch (\Exception $e) {
-            return ['error'=>true, 'Ocorreu algum erro ao localizar o registro.'];
+        $result = $this->repository->findWhere(['project_id'=>$id, 'id'=>$noteId]);
+        if (($result) && count($result)>=1) {
+           return $result;
         }
-
-
+        return ['error'=>true, 'Nota não encontrada.'];
     }
 
     /**
@@ -137,3 +137,4 @@ class ProjectNoteController extends Controller
      	    }
      	}
     }
+

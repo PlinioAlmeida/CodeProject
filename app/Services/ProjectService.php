@@ -56,4 +56,84 @@ class ProjectService
         }
     }
 
+    /**
+     * @param  int   $id
+     * @param  int   $memberId
+     * @return array
+     */
+    public function isMember($id, $memberId)
+    {
+        try {
+            $member = $this->repository->find($id)->members()->find($memberId);
+            if($member) {
+                return [
+                    'error'   => false,
+                    'message' => "Membro {$memberId} já pertence ao projeto"
+                    ];
+            }
+            return [
+                'error' => true,
+                'message' => "Membro {$memberId} não pertence ao projeto"
+                ];
+        } catch(ModelNotFoundException $ex) {
+            return [
+                'error' => true,
+                'message' => "ID {$memberId} não encontrado"
+                ];
+        }
+    }
+
+    /**
+     * @param int    $id
+     * @param int    $memberId
+     * @return array
+     */
+    public function addMember($id, $memberId)
+    {
+        try {
+            $checkIsMember = $this->isMember($id, $memberId);
+            if(!$checkIsMember['error']) {
+                return [
+                    'error'   => true,
+                    'message' => "Membro ID {$memberId} já está relacionado ao projeto"
+                    ];
+            }
+            $this->repository->find($id)->members()->attach($memberId);
+            return [
+                'error'   => false,
+                'message' => "Membro ID {$memberId} adicionado"
+                ];
+        } catch (ModelNotFoundException $e) {
+            return [
+                'error' => true,
+                'message' => "ID {$memberId} não encontrado"
+                ];
+        }
+    }
+
+    /**
+     * @param  int   $id
+     * @return array
+     * @param  int   $memberId
+     */
+    public function removeMember($id, $memberId)
+    {
+        try {
+            $checkIsMember = $this->isMember($id, $memberId);
+            if($checkIsMember['error']) {
+                return $checkIsMember;
+            }
+            $this->repository->find($id)->members()->detach($memberId);
+            return [
+                "error"   => false,
+                "message" => "Membro ID {$memberId} foi removido"
+                ];
+        } catch (ModelNotFoundException $e) {
+            return [
+                'error' => true,
+                'message' => "ID {$memberId} não encontrado"
+                ];
+        }
+    }
+
 }

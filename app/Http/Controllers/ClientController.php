@@ -73,9 +73,19 @@ class ClientController extends Controller
         try {
             return $this->repository->find($id);
             } catch (ModelNotFoundException $e) {
-                return ['error'=>true, 'Cliente não encontrado.'];
+                return response()->json([
+                        "error" => true,
+                        "message" => $e->getMessage()
+                        ],
+                        404);
+
             } catch (\Exception $e) {
-                return ['error'=>true, 'Ocorreu algum erro ao localizar o cliente.'];
+                return response()->json([
+                        "error" => true,
+                        "message" => $e->getMessage()
+                        ],
+                        412);
+
             }
     }
 

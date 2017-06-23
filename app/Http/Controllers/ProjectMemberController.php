@@ -2,29 +2,29 @@
 
 namespace CodeProject\Http\Controllers;
 
-use CodeProject\Repositories\ProjectRepository;
-use CodeProject\Services\ProjectService;
+use CodeProject\Repositories\ProjectMemberRepository;
+use CodeProject\Services\ProjectMemberService;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class ProjectController extends Controller
+class ProjectMemberController extends Controller
 {
     /**
-     * @var ProjectRepository
+     * @var ProjectMemberRepository
      */
     private $repository;
 
     /**
-     * @var ProjectService
+     * @var ProjectMemberService
      */
     private $service;
 
     /**
-     * ProjectController constructor.
-     * @param ProjectRepository $repository
-     * @param ProjectService $service
+     * ProjectMemberController constructor.
+     * @param ProjectMemberRepository $repository
+     * @param ProjectMemberService $service
      */
-    public function __construct(ProjectRepository $repository, ProjectService $service)
+    public function __construct(ProjectMemberRepository $repository, ProjectMemberService $service)
     {
         $this->repository = $repository;
         $this->service = $service;
@@ -36,9 +36,13 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return $this->repository->all();
+        $result = $this->repository->findWhere(['project_id'=>$id]);
+        if (($result) && count($result)>=1) {
+            return $result;
+        }
+        return ['error'=>true, 'Não foram localizados membros neste projeto.'];
     }
 
     /**
@@ -62,22 +66,19 @@ class ProjectController extends Controller
         return $this->service->create($request->all());
     }
 
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $memberId)
     {
-        try {
-            return $this->repository->find($id);
-        } catch (ModelNotFoundException $e) {
-            return ['error'=>true, 'Projeto não encontrado.'];
-        } catch (\Exception $e) {
-            return ['error'=>true, 'Ocorreu algum erro ao localizar o projeto.'];
+        $return = $this->repository->findWhere(['project_id'=>$id, 'id'=>$memberId]);
+        if (($result) && count($result)>=1) {
+            return $result;
         }
+        return ['error'=>true, 'Membro não encontrado.'];
     }
 
     /**
@@ -98,15 +99,16 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $memberId)
     {
         try {
-            return $this->service->update($request->all(), $id);
+            return $this->service->update($request->all(), $memberId);
         } catch (ModelNotFoundException $e) {
-            return ['error'=>true, 'Projeto não encontrado.'];
+            return ['error'=>true, 'Membro não encontrado.'];
         } catch (\Exception $e) {
-            return ['error'=>true, 'Ocorreu algum erro ao localizar o projeto.'];
+            return ['error'=>true, 'Ocorreu algum erro ao localizar o membro do projeto.'];
         }
+
     }
 
     /**
@@ -115,23 +117,23 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $memberId)
     {
         try{
-            $this->repository->find($id)->delete();
+            $this->repository->find($memberId)->delete();
             return [
                 'success' => true,
-                'message' => "Projeto deletado com sucesso!"
+                'message' => "Membro do projeto deletado com sucesso!"
             ];
             }
             catch(QueryException $e){
-                return ['error'=>true,'message'=>'Projeto nao pode ser apagado pois existe um ou mais projetos vinculados a ele.'];
+                return ['error'=>true,'message'=>'Membro do projeto nao pode ser apagado pois existe um ou mais projetos vinculados a ela.'];
      	    }
      	    catch(ModelNotFoundException $e){
-     	    return ['error'=>true,'message'=>'Projeto não encontrado.'];
+     	    return ['error'=>true,'message'=>'Membro do projeto não encontrado.'];
      	    }
      	    catch(\Exception $e){
-     	    return ['error'=>true,'message'=>'Ocorreu um erro ao excluir o Projeto.'];
+     	    return ['error'=>true,'message'=>'Ocorreu um erro ao excluir o membro do projeto.'];
      	    }
      	}
     }

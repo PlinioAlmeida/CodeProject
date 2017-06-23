@@ -8,7 +8,6 @@
 
 namespace CodeProject\Validators;
 
-
 use Prettus\Validator\LaravelValidator;
 
 class ProjectNoteValidator extends LaravelValidator

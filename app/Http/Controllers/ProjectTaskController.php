@@ -2,29 +2,33 @@
 
 namespace CodeProject\Http\Controllers;
 
-use CodeProject\Repositories\ProjectRepository;
-use CodeProject\Services\ProjectService;
+use CodeProject\Repositories\ProjectTaskRepository;
+use CodeProject\Services\ProjectTaskService;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class ProjectController extends Controller
+/**
+ * Class ProjectTaskController
+ * @package CodeProject\Http\Controllers
+ */
+class ProjectTaskController extends Controller
 {
     /**
-     * @var ProjectRepository
+     * @var ProjectTaskRepository
      */
     private $repository;
 
     /**
-     * @var ProjectService
+     * @var ProjectTaskService
      */
     private $service;
 
     /**
-     * ProjectController constructor.
-     * @param ProjectRepository $repository
-     * @param ProjectService $service
+     * ProjectTaskController constructor.
+     * @param ProjectTaskRepository $repository
+     * @param ProjectTaskService $service
      */
-    public function __construct(ProjectRepository $repository, ProjectService $service)
+    public function __construct(ProjectTaskRepository $repository, ProjectTaskService $service)
     {
         $this->repository = $repository;
         $this->service = $service;
@@ -36,9 +40,13 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return $this->repository->all();
+        $result = $this->repository->findWhere(['project_id'=>$id]);
+        if (($result) && count($result)>=1) {
+            return $result;
+        }
+        return ['error'=>true, 'Não foram localizadas tarefas neste projeto.'];
     }
 
     /**
@@ -62,22 +70,19 @@ class ProjectController extends Controller
         return $this->service->create($request->all());
     }
 
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $taskId)
     {
-        try {
-            return $this->repository->find($id);
-        } catch (ModelNotFoundException $e) {
-            return ['error'=>true, 'Projeto não encontrado.'];
-        } catch (\Exception $e) {
-            return ['error'=>true, 'Ocorreu algum erro ao localizar o projeto.'];
+        $return = $this->repository->findWhere(['project_id'=>$id, 'id'=>$taskId]);
+        if (($result) && count($result)>=1) {
+            return $result;
         }
+        return ['error'=>true, 'Tarefa não encontrada.'];
     }
 
     /**
@@ -98,15 +103,16 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $taskId)
     {
         try {
-            return $this->service->update($request->all(), $id);
+            return $this->service->update($request->all(), $taskId);
         } catch (ModelNotFoundException $e) {
-            return ['error'=>true, 'Projeto não encontrado.'];
+            return ['error'=>true, 'Tarefa não encontrada.'];
         } catch (\Exception $e) {
-            return ['error'=>true, 'Ocorreu algum erro ao localizar o projeto.'];
+            return ['error'=>true, 'Ocorreu algum erro ao localizar a tarefa do projeto.'];
         }
+
     }
 
     /**
@@ -115,23 +121,23 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $taskId)
     {
         try{
-            $this->repository->find($id)->delete();
+            $this->repository->find($taskId)->delete();
             return [
                 'success' => true,
-                'message' => "Projeto deletado com sucesso!"
+                'message' => "Tarefa do projeto deletada com sucesso!"
             ];
             }
             catch(QueryException $e){
-                return ['error'=>true,'message'=>'Projeto nao pode ser apagado pois existe um ou mais projetos vinculados a ele.'];
+                return ['error'=>true,'message'=>'Tarefa do projeto nao pode ser apagada pois existe um ou mais projetos vinculados a ela.'];
      	    }
      	    catch(ModelNotFoundException $e){
-     	    return ['error'=>true,'message'=>'Projeto não encontrado.'];
+     	    return ['error'=>true,'message'=>'Tarefa do projeto não encontrada.'];
      	    }
      	    catch(\Exception $e){
-     	    return ['error'=>true,'message'=>'Ocorreu um erro ao excluir o Projeto.'];
+     	    return ['error'=>true,'message'=>'Ocorreu um erro ao excluir a tarefa do projeto.'];
      	    }
      	}
     }
