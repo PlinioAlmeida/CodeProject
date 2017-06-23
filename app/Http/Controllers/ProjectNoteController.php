@@ -7,6 +7,10 @@ use CodeProject\Services\ProjectNoteService;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+/**
+ * Class ProjectNoteController
+ * @package CodeProject\Http\Controllers
+ */
 class ProjectNoteController extends Controller
 {
     /**
@@ -74,9 +78,9 @@ class ProjectNoteController extends Controller
      */
     public function show($id, $noteId)
     {
-        $result = $this->repository->findWhere(['project_id'=>$id, 'id'=>$noteId]);
+        $return = $this->repository->findWhere(['project_id'=>$id, 'id'=>$noteId]);
         if (($result) && count($result)>=1) {
-           return $result;
+            return $result;
         }
         return ['error'=>true, 'Nota não encontrada.'];
     }
@@ -133,8 +137,7 @@ class ProjectNoteController extends Controller
      	    return ['error'=>true,'message'=>'Nota do projeto não encontrada.'];
      	    }
      	    catch(\Exception $e){
-     	    return ['error'=>true,'message'=>'Ocorreu um erro ao excluir a nota do projeto.'];
+     	    return ['error'=>true,'message'=>'Ocorreu um erro ao excluir a Nota do projeto.'];
      	    }
      	}
     }
-
