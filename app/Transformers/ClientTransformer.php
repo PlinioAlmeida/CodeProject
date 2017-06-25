@@ -1,0 +1,27 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrador
+ * Date: 23/06/17
+ * Time: 10:55
+ */
+
+namespace CodeProject\Transformers;
+
+use CodeProject\Entities\Client;
+use League\Fractal\TransformerAbstract;
+
+class ClientTransformer extends TransformerAbstract
+{
+    public function transform(Client $client) {
+        return [
+            'client_id' => $client->id,
+            'name' => $client->name,
+            'responsible' => $client->responsible,
+            'email' => $client->email,
+            'phone' => $client->phone,
+            'address' => $client->address,
+            'obs' => $client->obs
+        ];
+    }
+}

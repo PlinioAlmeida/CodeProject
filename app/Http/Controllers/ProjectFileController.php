@@ -53,20 +53,7 @@ class ProjectFileController extends Controller {
         }
         return $this->repository->find($id);
     }
-    public function showFile($id) {
-        if($this->service->checkProjectPermissions($id) == false) {
-            return ['error' => 'Acesso Negado!'];
-        }
-        $filePath = $this->service->getFilePath($id);
-        $fileContent = file_get_contents($filePath);
-        $file64 = base64_encode($fileContent);
-        return [
-            'file' => $file64,
-            'size' => filesize($filePath),
-            'name' => $this->service->getFileName($id),
-//            'mime_type' => $this->service->getMimeType($id)
-        ];
-    }
+
     /**
      * Update the specified resource in storage.
      *
