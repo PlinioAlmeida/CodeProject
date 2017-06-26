@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1141d009-de7f-4dca-bdde-2ded158f3b61" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Presenters/ClientPresenter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Presenters/ProjectFilePresenter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Presenters/ProjectNotePresenter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Presenters/ProjectTaskPresenter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Transformers/ClientTransformer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Transformers/ProjectFileTransformer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Transformers/ProjectNoteTransformer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Transformers/ProjectTaskTransformer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Transformers/UserTransformer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/seeds/OAuthClientTableSeeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectFileController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectFileController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/ClientRepositoryEloquent.php" afterPath="$PROJECT_DIR$/app/Repositories/ClientRepositoryEloquent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/ProjectFileRepositoryEloquent.php" afterPath="$PROJECT_DIR$/app/Repositories/ProjectFileRepositoryEloquent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/ProjectNoteRepositoryEloquent.php" afterPath="$PROJECT_DIR$/app/Repositories/ProjectNoteRepositoryEloquent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/ProjectRepositoryEloquent.php" afterPath="$PROJECT_DIR$/app/Repositories/ProjectRepositoryEloquent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/ProjectTaskRepositoryEloquent.php" afterPath="$PROJECT_DIR$/app/Repositories/ProjectTaskRepositoryEloquent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Transformers/ProjectTransformer.php" afterPath="$PROJECT_DIR$/app/Transformers/ProjectTransformer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2017_06_23_212246_add_project_id_in_project_files.php" afterPath="$PROJECT_DIR$/database/migrations/2017_06_23_212246_add_project_id_in_project_files.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,47 +32,53 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="4E5579" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProjectFileService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Services/ProjectFileService.php">
+    <leaf>
+      <file leaf-file-name="2017_06_23_212246_add_project_id_in_project_files.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_23_212246_add_project_id_in_project_files.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="806">
-              <caret line="37" column="14" lean-forward="false" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
+            <state relative-caret-position="468">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectPresenter.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Presenters/ProjectPresenter.php">
+      <file leaf-file-name="2017_06_23_202729_create_project_files_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_23_202729_create_project_files_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-              <folding>
-                <element signature="e#130#178#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectTaskRepositoryEloquent.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Repositories/ProjectTaskRepositoryEloquent.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
-              <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+            <state relative-caret-position="494">
+              <caret line="20" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectRepositoryEloquent.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Repositories/ProjectRepositoryEloquent.php">
+      <file leaf-file-name="2014_10_12_000000_create_users_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-              <folding>
-                <element signature="e#44#88#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="468">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2017_06_18_143944_create_clients_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_18_143944_create_clients_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2017_06_20_220036_create_project_notes_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_20_220036_create_project_notes_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -164,7 +152,6 @@
         <option value="$PROJECT_DIR$/app/Entities/Project.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ProjectNoteController.php" />
         <option value="$PROJECT_DIR$/app/Validators/ProjectFileValidator.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2017_06_23_212246_add_project_id_in_project_files.php" />
         <option value="$PROJECT_DIR$/app/Providers/CodeProjectRepositoryProvider.php" />
         <option value="$PROJECT_DIR$/app/Entities/ProjectFile.php" />
         <option value="$PROJECT_DIR$/app/Services/ProjectFileService.php" />
@@ -188,6 +175,7 @@
         <option value="$PROJECT_DIR$/app/Presenters/UserPresenter.php" />
         <option value="$PROJECT_DIR$/app/Transformers/ProjectTransformer.php" />
         <option value="$PROJECT_DIR$/app/Repositories/ProjectRepositoryEloquent.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_06_23_212246_add_project_id_in_project_files.php" />
       </list>
     </option>
   </component>
@@ -232,7 +220,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -524,6 +511,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -640,12 +628,13 @@
       <workItem from="1497796327482" duration="1531000" />
       <workItem from="1497797875588" duration="6249000" />
       <workItem from="1497868809477" duration="66375000" />
-      <workItem from="1498395454262" duration="4854000" />
+      <workItem from="1498395454262" duration="5057000" />
+      <workItem from="1498505643964" duration="624000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79943000" />
+    <option name="totallyTimeSpent" value="80770000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -713,13 +702,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProjectTaskController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="78" column="32" lean-forward="false" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProjectMemberController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -738,7 +720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -804,14 +785,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_23_204516_create_project_files_table.php" />
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_23_212246_add_project_id_in_project_files.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/CodeProjectRepositoryProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
@@ -823,7 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-429">
           <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -831,7 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
           <caret line="13" column="56" lean-forward="true" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -839,7 +810,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -847,7 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -855,9 +824,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding>
-            <element signature="e#132#162#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -873,9 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding>
-            <element signature="e#132#164#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -895,19 +858,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_20_220036_create_project_notes_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_22_124417_create_project_tasks_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="22" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -915,9 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-          <folding>
-            <element signature="e#132#169#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,17 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#132#169#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_23_202729_create_project_files_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -943,17 +883,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#132#169#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -961,9 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#132#162#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -971,9 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding>
-            <element signature="e#130#177#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -981,7 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
           <caret line="10" column="52" lean-forward="true" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -989,9 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#132#164#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -999,9 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding>
-            <element signature="e#130#182#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1009,9 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-          <folding>
-            <element signature="e#130#182#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1019,9 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="819">
           <caret line="39" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#44#92#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1029,9 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="767">
           <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
-          <folding>
-            <element signature="e#44#92#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1043,19 +950,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Presenters/UserPresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Presenters/UserPresenter.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="686">
           <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1063,9 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-312">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#132#165#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1081,7 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3030">
           <caret line="168" column="0" lean-forward="true" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1089,35 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1443">
           <caret line="81" column="1" lean-forward="true" selection-start-line="81" selection-start-column="1" selection-end-line="81" selection-end-column="1" />
-          <folding>
-            <element signature="e#46#97#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/ProjectFileService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="37" column="14" lean-forward="false" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Presenters/ProjectPresenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="e#130#178#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/ProjectTaskRepositoryEloquent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,9 +991,67 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <element signature="e#44#88#0#PHP" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/ProjectTaskRepositoryEloquent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Presenters/ProjectPresenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/ProjectFileService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="37" column="14" lean-forward="false" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_18_143944_create_clients_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_20_220036_create_project_notes_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_23_202729_create_project_files_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_06_23_212246_add_project_id_in_project_files.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
