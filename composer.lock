@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "16957a5033ca8f2d16eb7c37a6bf1ef3",
+    "content-hash": "6fb13782f79ff5c214a59255d40bc9a1",
     "packages": [
+        {
+            "name": "bestmomo/scafold",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bestmomo/scafold.git",
+                "reference": "0d9dcf8b1d11981cdd67efe064de49255aa44c9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bestmomo/scafold/zipball/0d9dcf8b1d11981cdd67efe064de49255aa44c9a",
+                "reference": "0d9dcf8b1d11981cdd67efe064de49255aa44c9a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bestmomo\\Scafold\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Bestmomo",
+                    "email": "grandheretique@free.fr"
+                }
+            ],
+            "description": "To add scafold to Laravel 5.1",
+            "homepage": "http://github.com/bestmomo/scafold",
+            "time": "2016-10-05 08:03:35"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.1.0",
@@ -3692,7 +3734,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "league/fractal": 20
+        "league/fractal": 20,
+        "bestmomo/scafold": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
