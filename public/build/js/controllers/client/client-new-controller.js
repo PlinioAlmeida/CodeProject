@@ -2,7 +2,9 @@
  * Created by Administrador on 05/07/17.
  */
 angular.module('app.controllers')
-    .controller('ClientNewController', ['$scope', '$location', 'Client', function ($scope, $location, Client) {
+    .controller('ClientNewController',
+        ['$scope', '$location', 'Client',
+            function ($scope, $location, Client) {
 
             $scope.client = new Client();
 

@@ -42,7 +42,7 @@ class ProjectNoteController extends Controller
      */
     public function index($id)
     {
-        $result = $this->repository->findWhere(['project_id'=>$id]);
+        $result = $this->repository->skipPresenter()->findWhere(['project_id'=>$id]);
         if (($result) && count($result)>=1) {
             return $result;
         }
@@ -78,11 +78,11 @@ class ProjectNoteController extends Controller
      */
     public function show($id, $noteId)
     {
-        $return = $this->repository->findWhere(['project_id'=>$id, 'id'=>$noteId]);
-        if (($result) && count($result)>=1) {
-            return $result;
+        $result = $this->repository->findWhere(['project_id' => $id, 'id' => $noteId]);
+        if(isset($result) && count($result) == 1){
+            $result = $result['data'][0];
         }
-        return ['error'=>true, 'Nota não encontrada.'];
+        return $result;
     }
 
     /**
@@ -124,7 +124,7 @@ class ProjectNoteController extends Controller
     public function destroy($id, $noteId)
     {
         try{
-            $this->repository->find($noteId)->delete();
+            $this->repository->skipPresenter()->find($noteId)->delete();
             return [
                 'success' => true,
                 'message' => "Nota do projeto deletada com sucesso!"

@@ -24,13 +24,48 @@ app.config([
     '$routeProvider','OAuthProvider','OAuthTokenProvider','appConfigProvider',
     function($routeProvider,OAuthProvider,OAuthTokenProvider,appConfigProvider){
     $routeProvider
-        .when('/login',{templateUrl:'build/views/login-view.html',controller:'LoginController'})
-        .when('/home',{templateUrl:'build/views/home-view.html',controller:'HomeController'})
-        .when('/clients',{templateUrl:'build/views/client/client-list-view.html',controller:'ClientListController'})
-        .when('/client/new',{templateUrl:'build/views/client/client-new-view.html',controller:'ClientNewController'})
-        .when('/client/:id/edit',{templateUrl:'build/views/client/client-edit-view.html',controller:'ClientEditController'})
-        .when('/client/:id/remove',{templateUrl:'build/views/client/client-remove-view.html',controller:'ClientRemoveController'})
+        .when('/login',{
+            templateUrl:'build/views/login-view.html',
+            controller:'LoginController'
+        })
+        .when('/home',{
+            templateUrl:'build/views/home-view.html',
+            controller:'HomeController'
+        })
+        .when('/clients',{
+            templateUrl:'build/views/client/client-list-view.html',
+            controller:'ClientListController'
+        })
+        .when('/client/new',{
+            templateUrl:'build/views/client/client-new-view.html',
+            controller:'ClientNewController'
+        })
+        .when('/client/:id/edit',{
+            templateUrl:'build/views/client/client-edit-view.html',
+            controller:'ClientEditController'
+        })
+        .when('/client/:id/remove',{
+            templateUrl:'build/views/client/client-remove-view.html',
+            controller:'ClientRemoveController'
+        })
+        .when('/project/:id/notes',{
+            templateUrl: 'build/views/projectNote/projectNote-list-view.html',
+            controller: 'ProjectNoteListController'
+        })
+        .when('/project/:id/note/new',{
+            templateUrl: 'build/views/projectNote/projectNote-new-view.html',
+            controller: 'ProjectNoteNewController'
+        })
+        .when('/project/:id/note/:idNote/edit',{
+            templateUrl: 'build/views/projectNote/projectNote-edit-view.html',
+            controller: 'ProjectNoteEditController'
+        })
+        .when('/project/:id/note/:idNote/remove',{
+            templateUrl: 'build/views/projectNote/projectNote-remove-view.html',
+            controller: 'ProjectNoteRemoveController'
+        })
         ;
+
         OAuthProvider.configure({
             baseUrl: appConfigProvider.config.baseUrl,
             clientId: 'appid1',
