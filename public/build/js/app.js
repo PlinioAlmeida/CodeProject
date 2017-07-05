@@ -24,9 +24,9 @@ app.config([
     '$routeProvider','OAuthProvider','OAuthTokenProvider','appConfigProvider',
     function($routeProvider,OAuthProvider,OAuthTokenProvider,appConfigProvider){
     $routeProvider
-        .when('/login',{templateUrl:'build/views/login.html',controller:'LoginController'})
-        .when('/home',{templateUrl:'build/views/home.html',controller:'HomeController'})
-        .when('/clients',{templateUrl:'build/views/client/list.html',controller:'ClientListController'})
+        .when('/login',{templateUrl:'build/views/login-view.html',controller:'LoginController'})
+        .when('/home',{templateUrl:'build/views/home-view.html',controller:'HomeController'})
+        .when('/clients',{templateUrl:'build/views/client/client-list-view.html',controller:'ClientListController'})
         ;
         OAuthProvider.configure({
             baseUrl: appConfigProvider.config.baseUrl,
