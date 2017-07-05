@@ -59,7 +59,14 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->service->create($request->all());
+        try {
+            return $this->service->create($request->all());
+        } catch (ValidatorException $e) {
+            return Response::json([
+                'error' => true,
+                'message' => $e->getMessageBag()
+            ], 400);
+        }
     }
 
     /**
@@ -71,7 +78,7 @@ class ClientController extends Controller
     public function show($id)
     {
         try {
-            return $this->repository->find($id);
+            return $this->repository->skipPresenter()->find($id);
             } catch (ModelNotFoundException $e) {
                 return response()->json([
                         "error" => true,
@@ -127,7 +134,7 @@ class ClientController extends Controller
     public function destroy($id)
     {
         try{
-            $this->repository->find($id)->delete();
+            $this->repository->skipPresenter()->find($id)->delete();
             return [
                 'success' => true,
                 'message' => "Cliente deletado com sucesso!"

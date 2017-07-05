@@ -83,6 +83,9 @@
 		<script src="{{asset('build/js/controllers/login-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/home-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/client/client-list-controller.js')}}"></script>
+		<script src="{{asset('build/js/controllers/client/client-new-controller.js')}}"></script>
+		<script src="{{asset('build/js/controllers/client/client-edit-controller.js')}}"></script>
+		<script src="{{asset('build/js/controllers/client/client-remove-controller.js')}}"></script>
 
 		<!-- SERVICES !-->
 		<script src="{{asset('build/js/services/client-service.js')}}"></script>

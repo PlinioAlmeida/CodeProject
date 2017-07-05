@@ -27,6 +27,9 @@ app.config([
         .when('/login',{templateUrl:'build/views/login-view.html',controller:'LoginController'})
         .when('/home',{templateUrl:'build/views/home-view.html',controller:'HomeController'})
         .when('/clients',{templateUrl:'build/views/client/client-list-view.html',controller:'ClientListController'})
+        .when('/client/new',{templateUrl:'build/views/client/client-new-view.html',controller:'ClientNewController'})
+        .when('/client/:id/edit',{templateUrl:'build/views/client/client-edit-view.html',controller:'ClientEditController'})
+        .when('/client/:id/remove',{templateUrl:'build/views/client/client-remove-view.html',controller:'ClientRemoveController'})
         ;
         OAuthProvider.configure({
             baseUrl: appConfigProvider.config.baseUrl,
