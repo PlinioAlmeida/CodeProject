@@ -414,4 +414,429 @@ this.init=function(g,h){e=g,this.config=h,e.$render=function(){d.render()},b.ite
  */
 'use strict';angular.module('mgcrea.ngStrap.navbar',[]).provider('$navbar',function(){var t=this.defaults={activeClass:'active',routeAttr:'data-match-route',strict:!1};this.$get=function(){return{defaults:t}}}).directive('bsNavbar',['$window','$location','$navbar',function(t,a,r){var e=r.defaults;return{restrict:'A',link:function(t,r,n,i){var c=angular.copy(e);angular.forEach(Object.keys(e),function(t){angular.isDefined(n[t])&&(c[t]=n[t])}),t.$watch(function(){return a.path()},function(t,a){var e=r[0].querySelectorAll('li['+c.routeAttr+']');angular.forEach(e,function(a){var r=angular.element(a),e=r.attr(c.routeAttr).replace('/','\\/');c.strict&&(e='^'+e+'$');var n=new RegExp(e,'i');n.test(t)?r.addClass(c.activeClass):r.removeClass(c.activeClass)})})}}}]);
 //# sourceMappingURL=../modules/navbar.min.js.map
+/*
+ AngularJS v1.5.9
+ (c) 2010-2016 Google, Inc. http://angularjs.org
+ License: MIT
+*/
+(function(n,c){'use strict';function l(b,a,g){var d=g.baseHref(),k=b[0];return function(b,e,f){var g,h;f=f||{};h=f.expires;g=c.isDefined(f.path)?f.path:d;c.isUndefined(e)&&(h="Thu, 01 Jan 1970 00:00:00 GMT",e="");c.isString(h)&&(h=new Date(h));e=encodeURIComponent(b)+"="+encodeURIComponent(e);e=e+(g?";path="+g:"")+(f.domain?";domain="+f.domain:"");e+=h?";expires="+h.toUTCString():"";e+=f.secure?";secure":"";f=e.length+1;4096<f&&a.warn("Cookie '"+b+"' possibly not set or overflowed because it was too large ("+
+f+" > 4096 bytes)!");k.cookie=e}}c.module("ngCookies",["ng"]).provider("$cookies",[function(){var b=this.defaults={};this.$get=["$$cookieReader","$$cookieWriter",function(a,g){return{get:function(d){return a()[d]},getObject:function(d){return(d=this.get(d))?c.fromJson(d):d},getAll:function(){return a()},put:function(d,a,m){g(d,a,m?c.extend({},b,m):b)},putObject:function(d,b,a){this.put(d,c.toJson(b),a)},remove:function(a,k){g(a,void 0,k?c.extend({},b,k):b)}}}]}]);c.module("ngCookies").factory("$cookieStore",
+["$cookies",function(b){return{get:function(a){return b.getObject(a)},put:function(a,c){b.putObject(a,c)},remove:function(a){b.remove(a)}}}]);l.$inject=["$document","$log","$browser"];c.module("ngCookies").provider("$$cookieWriter",function(){this.$get=l})})(window,window.angular);
+//# sourceMappingURL=angular-cookies.min.js.map
+
+/*!
+	query-string
+	Parse and stringify URL query strings
+	https://github.com/sindresorhus/query-string
+	by Sindre Sorhus
+	MIT License
+*/
+(function () {
+	'use strict';
+	var queryString = {};
+
+	queryString.parse = function (str) {
+		if (typeof str !== 'string') {
+			return {};
+		}
+
+		str = str.trim().replace(/^(\?|#)/, '');
+
+		if (!str) {
+			return {};
+		}
+
+		return str.trim().split('&').reduce(function (ret, param) {
+			var parts = param.replace(/\+/g, ' ').split('=');
+			var key = parts[0];
+			var val = parts[1];
+
+			key = decodeURIComponent(key);
+			// missing `=` should be `null`:
+			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+			val = val === undefined ? null : decodeURIComponent(val);
+
+			if (!ret.hasOwnProperty(key)) {
+				ret[key] = val;
+			} else if (Array.isArray(ret[key])) {
+				ret[key].push(val);
+			} else {
+				ret[key] = [ret[key], val];
+			}
+
+			return ret;
+		}, {});
+	};
+
+	queryString.stringify = function (obj) {
+		return obj ? Object.keys(obj).map(function (key) {
+			var val = obj[key];
+
+			if (Array.isArray(val)) {
+				return val.map(function (val2) {
+					return encodeURIComponent(key) + '=' + encodeURIComponent(val2);
+				}).join('&');
+			}
+
+			return encodeURIComponent(key) + '=' + encodeURIComponent(val);
+		}).join('&') : '';
+	};
+
+	if (typeof define === 'function' && define.amd) {
+		define(function() { return queryString; });
+	} else if (typeof module !== 'undefined' && module.exports) {
+		module.exports = queryString;
+	} else {
+		self.queryString = queryString;
+	}
+})();
+
+!function(e,t){"function"==typeof define&&define.amd?define(["angular","angular-cookies","query-string"],t):"object"==typeof exports?module.exports=t(require("angular"),require("angular-cookies"),require("query-string")):e.angularOAuth2=t(e.angular,"ngCookies",e.queryString)}(this,function(e,t,n){function r(e){e.interceptors.push("oauthInterceptor")}function o(e,t,n){return{request:function(e){return e.headers=e.headers||{},!e.headers.hasOwnProperty("Authorization")&&n.getAuthorizationHeader()&&(e.headers.Authorization=n.getAuthorizationHeader()),e},responseError:function(r){return r?(400!==r.status||!r.data||"invalid_request"!==r.data.error&&"invalid_grant"!==r.data.error||(n.removeToken(),t.$emit("oauth:error",r)),(401===r.status&&r.data&&"invalid_token"===r.data.error||r.headers&&r.headers("www-authenticate")&&0===r.headers("www-authenticate").indexOf("Bearer"))&&t.$emit("oauth:error",r),e.reject(r)):e.reject(r)}}}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(){var t=this,r=function(t){if(!(t instanceof Object))throw new TypeError("Invalid argument: `config` must be an `Object`.");var n=e.extend({},f,t);return e.forEach(h,function(e){if(!n[e])throw new Error("Missing parameter: "+e+".")}),"/"===n.baseUrl.substr(-1)&&(n.baseUrl=n.baseUrl.slice(0,-1)),"/"!==n.grantPath[0]&&(n.grantPath="/"+n.grantPath),"/"!==n.revokePath[0]&&(n.revokePath="/"+n.revokePath),n};this.configure=function(e){t.defaultConfig=r(e)},this.$get=function(t,o){var a=function(){function a(e){i(this,a),this.config=e}return s(a,[{key:"configure",value:function(e){this.config=r(e)}},{key:"isAuthenticated",value:function(){return!!o.getToken()}},{key:"getAccessToken",value:function(r,i){return r=e.extend({client_id:this.config.clientId,grant_type:"password"},r),null!==this.config.clientSecret&&(r.client_secret=this.config.clientSecret),r=n.stringify(r),i=e.extend({headers:{Authorization:void 0,"Content-Type":"application/x-www-form-urlencoded"}},i),t.post(""+this.config.baseUrl+this.config.grantPath,r,i).then(function(e){return o.setToken(e.data),e})}},{key:"getRefreshToken",value:function(r,i){return r=e.extend({client_id:this.config.clientId,grant_type:"refresh_token",refresh_token:o.getRefreshToken()},r),null!==this.config.clientSecret&&(r.client_secret=this.config.clientSecret),r=n.stringify(r),i=e.extend({headers:{Authorization:void 0,"Content-Type":"application/x-www-form-urlencoded"}},i),t.post(""+this.config.baseUrl+this.config.grantPath,r,i).then(function(e){return o.setToken(e.data),e})}},{key:"revokeToken",value:function(r,i){var a=o.getRefreshToken();return r=e.extend({client_id:this.config.clientId,token:a?a:o.getAccessToken(),token_type_hint:a?"refresh_token":"access_token"},r),null!==this.config.clientSecret&&(r.client_secret=this.config.clientSecret),r=n.stringify(r),i=e.extend({headers:{"Content-Type":"application/x-www-form-urlencoded"}},i),t.post(""+this.config.baseUrl+this.config.revokePath,r,i).then(function(e){return o.removeToken(),e})}}]),a}();return new a(this.defaultConfig)},this.$get.$inject=["$http","OAuthToken"]}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function u(){var t={name:"token",options:{secure:!0}};this.configure=function(n){if(!(n instanceof Object))throw new TypeError("Invalid argument: `config` must be an `Object`.");return e.extend(t,n),t},this.$get=function(e){var n=function(){function n(){i(this,n)}return s(n,[{key:"setToken",value:function(n){return e.putObject(t.name,n,t.options)}},{key:"getToken",value:function(){return e.getObject(t.name)}},{key:"getAccessToken",value:function(){var e=this.getToken()||{},t=e.access_token;return t}},{key:"getAuthorizationHeader",value:function(){var e=this.getTokenType(),t=this.getAccessToken();if(e&&t)return e.charAt(0).toUpperCase()+e.substr(1)+" "+t}},{key:"getRefreshToken",value:function(){var e=this.getToken()||{},t=e.refresh_token;return t}},{key:"getTokenType",value:function(){var e=this.getToken()||{},t=e.token_type;return t}},{key:"removeToken",value:function(){return e.remove(t.name,t.options)}}]),n}();return new n},this.$get.$inject=["$cookies"]}var c=e.module("angular-oauth2",[t]).config(r).factory("oauthInterceptor",o).provider("OAuth",a).provider("OAuthToken",u);r.$inject=["$httpProvider"],o.$inject=["$q","$rootScope","OAuthToken"];var s=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),f={baseUrl:null,clientId:null,clientSecret:null,grantPath:"/oauth2/token",revokePath:"/oauth2/revoke"},h=["baseUrl","clientId","grantPath","revokePath"],s=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}();return c});
+/**
+ * Created by Administrador on 30/06/17.
+ */
+var app = angular.module('app',['ngRoute','angular-oauth2','app.controllers','app.services']);
+
+angular.module('app.controllers',['ngMessages','angular-oauth2']);
+angular.module('app.services',['ngResource']);
+
+app.provider('appConfig',function(){
+   var config = {
+       baseUrl: 'http://localhost:8000'
+   };
+
+   return {
+       config: config,
+       $get: function() {
+           return config;
+       }
+   }
+
+});
+
+app.config([
+    '$routeProvider','OAuthProvider','OAuthTokenProvider','appConfigProvider',
+    function($routeProvider,OAuthProvider,OAuthTokenProvider,appConfigProvider){
+    $routeProvider
+        .when('/login',{
+            templateUrl:'build/views/login-view.html',
+            controller:'LoginController'
+        })
+        .when('/home',{
+            templateUrl:'build/views/home-view.html',
+            controller:'HomeController'
+        })
+        .when('/clients',{
+            templateUrl:'build/views/client/client-list-view.html',
+            controller:'ClientListController'
+        })
+        .when('/client/new',{
+            templateUrl:'build/views/client/client-new-view.html',
+            controller:'ClientNewController'
+        })
+        .when('/client/:id/edit',{
+            templateUrl:'build/views/client/client-edit-view.html',
+            controller:'ClientEditController'
+        })
+        .when('/client/:id/remove',{
+            templateUrl:'build/views/client/client-remove-view.html',
+            controller:'ClientRemoveController'
+        })
+        .when('/project/:id/notes',{
+            templateUrl: 'build/views/projectNote/projectNote-list-view.html',
+            controller: 'ProjectNoteListController'
+        })
+        .when('/project/:id/note/new',{
+            templateUrl: 'build/views/projectNote/projectNote-new-view.html',
+            controller: 'ProjectNoteNewController'
+        })
+        .when('/project/:id/note/:idNote/edit',{
+            templateUrl: 'build/views/projectNote/projectNote-edit-view.html',
+            controller: 'ProjectNoteEditController'
+        })
+        .when('/project/:id/note/:idNote/remove',{
+            templateUrl: 'build/views/projectNote/projectNote-remove-view.html',
+            controller: 'ProjectNoteRemoveController'
+        })
+        ;
+
+        OAuthProvider.configure({
+            baseUrl: appConfigProvider.config.baseUrl,
+            clientId: 'appid1',
+            clientSecret: 'secret', // optional
+            grantPath: 'oauth/access_token'
+        });
+
+        OAuthTokenProvider.configure({
+            name: 'token',
+            options: {
+                secure: false
+            }
+        });
+
+}]);
+
+app.run(['$rootScope', '$window', 'OAuth', function($rootScope, $window, OAuth) {
+    $rootScope.$on('oauth:error', function(event, rejection) {
+        // Ignore `invalid_grant` error - should be catched on `LoginController`.
+        if ('invalid_grant' === rejection.data.error) {
+            return;
+        }
+
+        // Refresh token when a `invalid_token` error occurs.
+        if ('invalid_token' === rejection.data.error) {
+            return OAuth.getRefreshToken();
+        }
+
+        // Redirect to `/login` with the `error_reason`.
+        return $window.location.href = '/login?error_reason=' + rejection.data.error;
+    });
+}]);
+
+
+
+/**
+ * Created by Administrador on 30/06/17.
+ */
+angular.module('app.controllers')
+    .controller('HomeController',['$scope',function($scope){
+
+}]);
+/**
+ * Created by Administrador on 30/06/17.
+ */
+angular.module('app.controllers')
+    .controller('LoginController',['$scope','$location','OAuth',function($scope,$location,OAuth){
+    $scope.user = {
+        username: '',
+        password: ''
+    };
+
+    $scope.error = {
+        message: '',
+        error: false
+    };
+
+    $scope.login = function() {
+        if ($scope.form.$valid) {
+            OAuth.getAccessToken($scope.user).then(function(){
+                $location.path('home');
+            },function(data){
+                $scope.error.error = true;
+                $scope.error.message = data.data.error_description;
+            });
+        }
+    };
+
+}]);
+/**
+ * Created by Administrador on 01/07/17.
+ */
+angular.module('app.services')
+.service('Client',['$resource','appConfig',function($resource,appConfig){
+    return $resource(appConfig.baseUrl+'/client/:id',{id:'@id'},{
+        update: {
+            method: 'PUT'
+        }
+    });
+}]);
+
+
+/**
+ * Created by Administrador on 05/07/17.
+ */
+angular.module('app.services')
+    .service('ProjectNote', ['$resource', 'appConfig', function($resource, appConfig){
+        return $resource(appConfig.baseUrl + '/project/:id/note/:idNote',{
+            id: '@id',
+            idNote: '@idNote'
+        },{
+            update: {
+                method: 'PUT'
+            }
+        });
+    }]);
+
+
+/**
+ * Created by Administrador on 05/07/17.
+ */
+angular.module('app.controllers')
+    .controller('ClientEditController',
+        ['$scope', '$location', '$routeParams', 'Client',
+            function ($scope, $location, $routeParams, Client) {
+
+                $scope.client = Client.get({id: $routeParams.id });
+
+                $scope.save = function () {
+                    if($scope.form.$valid){
+                        Client.update({id: $scope.client.id}, $scope.client, function () {
+                            $location.path('/clients');
+                        },function(error){
+                            if(error.data.hasOwnProperty('error') && error.data.error){
+                                $scope.error = {
+                                    error: true,
+                                    message: error.data.message
+                                };
+                            }
+                        });
+                    }
+                };
+            }]);
+
+/**
+ * Created by Administrador on 01/07/17.
+ */
+angular.module('app.controllers')
+    .controller('ClientListController',['$scope','Client',function($scope,Client){
+        $scope.clients = Client.query();
+    }]);
+/**
+ * Created by Administrador on 05/07/17.
+ */
+angular.module('app.controllers')
+    .controller('ClientNewController',
+        ['$scope', '$location', 'Client',
+            function ($scope, $location, Client) {
+
+            $scope.client = new Client();
+
+            $scope.save = function () {
+                if($scope.form.$valid){
+                    $scope.client.$save().then(function () {
+                        $location.path('/clients');
+                    }), function (error) {
+                        if(error.data.hasOwnProperty('error') && error.data.error){
+                            $scope.error = {
+                                error: true,
+                                message: error.data.message
+                            };
+                        }
+                    };
+                }
+            };
+
+    }]);
+
+/**
+ * Created by Administrador on 05/07/17.
+ */
+angular.module('app.controllers')
+    .controller('ClientRemoveController',
+        ['$scope', '$location', '$routeParams', 'Client',
+            function ($scope, $location, $routeParams, Client) {
+
+                $scope.client = Client.get({id: $routeParams.id });
+
+                $scope.remove = function () {
+                    $scope.client.$delete().then(function(){
+                        $location.path('/clients');
+                    });
+                };
+
+            }]);
+
+
+
+/**
+ * Created by Administrador on 05/07/17.
+ */
+angular.module('app.controllers')
+    .controller('ProjectNoteEditController',
+        ['$scope', '$location', '$routeParams', 'ProjectNote',
+            function ($scope, $location, $routeParams, ProjectNote) {
+
+                $scope.projectNote = ProjectNote.get({
+                    id: $routeParams.id,
+                    idNote: $routeParams.idNote
+                });
+
+                $scope.save = function () {
+                    if($scope.form.$valid){
+                        ProjectNote.update({
+                            id: $routeParams.id,
+                            idNote: $scope.projectNote.id
+                        }, $scope.projectNote, function () {
+                            $location.path('/project/'+$routeParams.id+'/notes');
+                        }, function (error) {
+                            if(error.data.hasOwnProperty('error') && error.data.error){
+                                $scope.error = {
+                                    error: true,
+                                    message: error.data.message
+                                };
+                            }
+                        });
+                    }
+                };
+
+            }]);
+
+/**
+ * Created by Administrador on 05/07/17.
+ */
+angular.module('app.controllers')
+    .controller('ProjectNoteListController',['$scope','$routeParams','ProjectNote',function($scope,$routeParams,ProjectNote){
+        $scope.projectNotes = ProjectNote.query({id: $routeParams.id});
+    }]);
+/**
+ * Created by Administrador on 05/07/17.
+ */
+angular.module('app.controllers')
+    .controller('ProjectNoteNewController',
+        ['$scope', '$location', '$routeParams', 'ProjectNote',
+            function ($scope, $location, $routeParams, ProjectNote) {
+
+                $scope.projectNote = new ProjectNote();
+                $scope.projectNote.project_id  = $routeParams.id;
+
+                $scope.save = function () {
+                    if($scope.form.$valid){
+                        $scope.projectNote.$save({id: $routeParams.id}).then(function () {
+                            $location.path('/project/'+$routeParams.id+'/notes');
+                        }), function (error) {
+                            if(error.data.hasOwnProperty('error') && error.data.error){
+                                $scope.error = {
+                                    error: true,
+                                    message: error.data.message
+                                };
+                            }
+                        };
+                    }
+                };
+
+            }
+        ]);
+
+
+/**
+ * Created by Administrador on 05/07/17.
+ */
+angular.module('app.controllers')
+    .controller('ProjectNoteRemoveController',
+        ['$scope', '$location', '$routeParams', 'ProjectNote',
+            function ($scope, $location, $routeParams, ProjectNote) {
+
+                $scope.projectNote = ProjectNote.get({
+                    id: $routeParams.id,
+                    idNote: $routeParams.idNote
+                });
+
+                $scope.remove = function () {
+                    $scope.projectNote.$delete({
+                        id: $routeParams.id,
+                        idNote: $scope.projectNote.id
+                    }).then(function(){
+                        $location.path('/project/'+$routeParams.id+'/notes');
+                    }, function (error) {
+                        if(error.data.hasOwnProperty('error') && error.data.error){
+                            $scope.error = {
+                                error: true,
+                                message: error.data.message
+                            };
+                        }
+                    });
+                };
+
+            }]);
+
 //# sourceMappingURL=all.js.map

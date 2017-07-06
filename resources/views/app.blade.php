@@ -6,8 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 	@if(Config::get('app.debug'))
-		<link href="{{ asset('build/css/vendor/bootstrap.min.css') }}" rel="stylesheet"/>
-		<link href="{{ asset('build/css/vendor/bootstrap-theme.min.css') }}" rel="stylesheet"/>
+		<link href="{{ asset('build/css/app.css') }}" rel="stylesheet" />
+		<link href="{{ asset('build/css/components.css') }}" rel="stylesheet" />
+		<link href="{{ asset('build/css/flaticon.css') }}" rel="stylesheet" />
+		<link href="{{ asset('build/css/font-awesome.css') }}" rel="stylesheet" />
 	@else
 		<link href="{{ elixir('css/all.css') }}" rel="stylesheet"/>
 	@endif
@@ -88,15 +90,15 @@
 		<script src="{{asset('build/js/controllers/client/client-remove-controller.js')}}"></script>
 
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-list-controller.js')}}"></script>
+		<script src="{{asset('build/js/controllers/projectNote/projectNote-show-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-new-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-edit-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-remove-controller.js')}}"></script>
 		
-		
-		
 		<!-- SERVICES !-->
 		<script src="{{asset('build/js/services/client-service.js')}}"></script>
 		<script src="{{asset('build/js/services/projectNote-service.js')}}"></script>
+		<script src="{{asset('build/js/services/user-service.js')}}"></script>
 
 
 	@else
