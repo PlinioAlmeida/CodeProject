@@ -36,10 +36,16 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $userId = \Authorizer::getResourceOwnerId();
-        return $this->repository->findWhere(['owner_id'=>$userId]);
+       $userId = \Authorizer::getResourceOwnerId();
+       $result = $this->repository->findWhere(['owner_id'=>$userId]);
+
+   //     if(isset($result) && count($result) == 1){
+   //         $result = $result['data'][0];
+   //     }
+return $result;
+
     }
 
     /**
@@ -72,15 +78,15 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
+        if($this->checkProjectPermissions($id) == false){
+            return ['error'=>'Access Forbidden'];
+        }
         try {
-            if($this->checkProjectPermissions($id)==false){
-                return ['error'=>'Access forbidden'];
-            }
             return $this->repository->find($id);
         } catch (ModelNotFoundException $e) {
-            return ['error'=>true, 'Projeto não encontrado.'];
+            return ['error'=>true, 'Projeto nao encontrado.'];
         } catch (\Exception $e) {
-            return ['error'=>true, 'Ocorreu algum erro ao localizar o projeto.'];
+            return ['error'=>true, 'Ocorreu algum erro ao encontrar o projeto.'];
         }
     }
 

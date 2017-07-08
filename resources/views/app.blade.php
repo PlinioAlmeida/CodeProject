@@ -73,7 +73,7 @@
 		<script src="{{asset('build/js/vendor/angular-resource.min.js')}}"></script>
 		<script src="{{asset('build/js/vendor/angular-animate.min.js')}}"></script>
 		<script src="{{asset('build/js/vendor/angular-messages.min.js')}}"></script>
-		<script src="{{asset('build/js/vendor/ui-bootstrap.min.js')}}"></script>
+		<script src="{{asset('build/js/vendor/ui-bootstrap-tpls.min.js')}}"></script>
 		<script src="{{asset('build/js/vendor/navbar.min.js')}}"></script>
 		<script src="{{asset('build/js/vendor/angular-cookies.min.js')}}"></script>
 		<script src="{{asset('build/js/vendor/query-string.js')}}"></script>
@@ -84,19 +84,29 @@
 		<!-- CONTROLLERS !-->
 		<script src="{{asset('build/js/controllers/login-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/home-controller.js')}}"></script>
+		
 		<script src="{{asset('build/js/controllers/client/client-list-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/client/client-new-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/client/client-edit-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/client/client-remove-controller.js')}}"></script>
+
+		<script src="{{asset('build/js/controllers/project/project-list-controller.js')}}"></script>
+		<script src="{{asset('build/js/controllers/project/project-new-controller.js')}}"></script>
+		<script src="{{asset('build/js/controllers/project/project-edit-controller.js')}}"></script>
+		<script src="{{asset('build/js/controllers/project/project-remove-controller.js')}}"></script>
 
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-list-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-show-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-new-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-edit-controller.js')}}"></script>
 		<script src="{{asset('build/js/controllers/projectNote/projectNote-remove-controller.js')}}"></script>
-		
+
+		<!-- FILTERS !-->
+		<script src="{{asset('build/js/filters/date-br.js')}}"></script>
+
 		<!-- SERVICES !-->
 		<script src="{{asset('build/js/services/client-service.js')}}"></script>
+		<script src="{{asset('build/js/services/project-service.js')}}"></script>
 		<script src="{{asset('build/js/services/projectNote-service.js')}}"></script>
 		<script src="{{asset('build/js/services/user-service.js')}}"></script>
 

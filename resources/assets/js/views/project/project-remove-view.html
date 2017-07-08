@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Exclusão de Projeto</div>
+                <div class="panel-body">
+
+                    <p>Deseja excluir este projeto?</p>
+
+                    <ul>
+                        <li><strong>Name: </strong>{{ project.project }} </li>
+                        <li><strong>Client: </strong>{{ project.client.data.name }} </li>
+                        <li><strong>Progress: </strong>{{ project.progress }} </li>
+                        <li><strong>Status: </strong>{{ project.status }} </li>
+                        <li><strong>Due date: </strong>{{ project.due_date | dateBr }} </li>
+                    </ul>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="button" ng-click="remove()" class="btn btn-danger">Remove</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
